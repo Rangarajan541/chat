@@ -70,11 +70,11 @@ public class NewJFrame extends javax.swing.JFrame {
             jFrame1.addWindowListener(onClose);
             jFrame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             jFrame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            jFrame2.setTitle("IP Chatroom");
+            jFrame2.setTitle("Senior Lab Chatroom");
             jFrame2.pack();
             jFrame2.setResizable(false);
             jFrame2.setLocationRelativeTo(null);
-            jFrame1.setTitle("IP Chatroom");
+            jFrame1.setTitle("Senior Lab Chatroom");
             jFrame1.pack();
             jFrame1.setResizable(false);
             jFrame1.setLocationRelativeTo(null);
@@ -302,9 +302,9 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jCheckBox1))
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton1))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
