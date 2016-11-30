@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class NewJFrame extends javax.swing.JFrame {
+public class LanChat extends javax.swing.JFrame {
 
     private String name;
     private ArrayList<String> words = new ArrayList<>();
@@ -28,13 +28,13 @@ public class NewJFrame extends javax.swing.JFrame {
     private int curID = -1, curKillID = -1;
     private static boolean reset = false, nameOK = false;
 
-    public NewJFrame() {
+    public LanChat() {
         FileReader fr = null;
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LanChat.class.getName()).log(Level.SEVERE, null, ex);
             }
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/chat", "root", "open");
             stmt = con.createStatement();
@@ -544,7 +544,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LanChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             System.exit(0);
         }
         try {
@@ -558,7 +558,7 @@ public class NewJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new NewJFrame().dispose();
+                new LanChat().dispose();
             }
         });
     }
