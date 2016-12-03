@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Intel
+ * @author Rangarajan
  */
 @SuppressWarnings("serial")
 public class LanChat extends javax.swing.JFrame {
@@ -143,7 +143,7 @@ public class LanChat extends javax.swing.JFrame {
                         if (rs.next()) {
                             int id = rs.getInt(1);
                             if (id > curKillID) {
-                                System.exit(0);
+                                exitUser("Program master shutdown");
                             }
                         }
                         Thread.sleep(500);
@@ -755,8 +755,8 @@ public class LanChat extends javax.swing.JFrame {
                 } catch (IOException ex1) {
                 }
             }
-            System.exit(0);
         }
+        exitUser("Encountered an error");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
