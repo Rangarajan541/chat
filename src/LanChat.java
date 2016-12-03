@@ -564,8 +564,8 @@ public class LanChat extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("insert into suggestions values(\"" + name + "\",\"" + jTextArea4.getText().trim() + "\",now());");
+            Statement stmt6 = con.createStatement();
+            stmt6.executeUpdate("insert into suggestions values(\"" + name + "\",\"" + jTextArea4.getText().trim() + "\",now());");
             JOptionPane.showMessageDialog(jFrame3, "Thanks!");
             jFrame3.dispose();
         } catch (SQLException ex) {
@@ -690,13 +690,13 @@ public class LanChat extends javax.swing.JFrame {
 
     public final void showException(String msg, Exception ex) {
         JOptionPane.showMessageDialog(null, msg + "\n" + ex.getMessage(), "Oops. -" + name, JOptionPane.ERROR_MESSAGE);
-
+        FileWriter fw = null;
         try {
-            File f = new File("D:/ErrorLog.txt");
+            File f = new File("C:/ProgramData/chat/ErrorLog.txt");
             if (!f.exists()) {
                 f.createNewFile();
             }
-            FileWriter fw = new FileWriter(f, true);
+            fw = new FileWriter(f, true);
             fw.write("Error At: " + Calendar.getInstance().getTime() + System.getProperty("line.separator"));
             fw.write("Message (System): " + ex.getMessage() + System.getProperty("line.separator"));
             fw.write("Message (Annotated): " + msg + System.getProperty("line.separator"));
@@ -704,10 +704,15 @@ public class LanChat extends javax.swing.JFrame {
                 fw.write(x + System.getProperty("line.separator"));
             }
             fw.write("End" + System.getProperty("line.separator"));
-            fw.close();
         } catch (IOException ex1) {
             ex1.printStackTrace();
         } finally {
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException ex1) {
+                }
+            }
             System.exit(0);
         }
     }
