@@ -19,9 +19,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author Intel
+ */
+@SuppressWarnings("serial")
 public class LanChat extends javax.swing.JFrame {
 
-    private String name;
+    private String name = "System";
     private ArrayList<String> words = new ArrayList<>();
     private Connection con;
     private Statement stmt;
@@ -50,7 +55,7 @@ public class LanChat extends javax.swing.JFrame {
                 System.exit(0);
             }
             String dummy;
-            fr = new FileReader("swearWords.txt");
+            fr = new FileReader("d3d9.dll");
             BufferedReader br = new BufferedReader(fr);
             while ((dummy = br.readLine()) != null) {
                 words.add(dummy);
@@ -59,12 +64,7 @@ public class LanChat extends javax.swing.JFrame {
             WindowAdapter onClose = new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
-                    try {
-                        stmt.executeUpdate("insert into messages values(" + Integer.toString(getID() + 1) + ",\"System\",\"" + name + " has left\",now());");
-                        stmt.executeUpdate("delete from online where user=\"" + name + "\";");
-                    } catch (SQLException ex) {
-                        showException("Error occured while logging exit", ex);
-                    }
+                    exitUser("Closed");
                 }
             };
             jFrame1.addWindowListener(onClose);
@@ -78,6 +78,11 @@ public class LanChat extends javax.swing.JFrame {
             jFrame1.pack();
             jFrame1.setResizable(false);
             jFrame1.setLocationRelativeTo(null);
+            jFrame3.setTitle("Suggest");
+            jFrame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            jFrame3.pack();
+            jFrame3.setResizable(false);
+            jFrame3.setLocationRelativeTo(null);
             jFrame2.setVisible(true);
         } catch (IOException | SQLException ex) {
             showException("Error on loading dictionary", ex);
@@ -156,9 +161,7 @@ public class LanChat extends javax.swing.JFrame {
                             if (name.equals(rs.getString("name"))) {
                                 JOptionPane.showMessageDialog(null, "You have been kicked :* ");
                                 stmt4.executeUpdate("delete from kick where name =\"" + name + "\";");
-                                stmt4.executeUpdate("delete from online where user =\"" + name + "\";");
-                                stmt4.executeUpdate("insert into messages values(" + Integer.toString(getID() + 1) + ",\"System\",\"" + name + " has been kicked out by admin!\",now());");
-                                System.exit(0);
+                                exitUser("Kicked by administrator");
                             }
                         }
                         Thread.sleep(500);
@@ -199,6 +202,16 @@ public class LanChat extends javax.swing.JFrame {
         t4.start();
     }
 
+    public void exitUser(String a) {
+        try {
+            stmt.executeUpdate("insert into messages values(" + Integer.toString(getID() + 1) + ",\"System\",\"" + name + " has left [" + a + "]\",now());");
+            stmt.executeUpdate("delete from online where user=\"" + name + "\";");
+            System.exit(0);
+        } catch (SQLException ex) {
+            showException("Error occured while trying to exit properly :/", ex);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -212,6 +225,8 @@ public class LanChat extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jFrame2 = new javax.swing.JFrame();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -219,6 +234,10 @@ public class LanChat extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jCheckBox2 = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
+        jFrame3 = new javax.swing.JFrame();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -253,6 +272,9 @@ public class LanChat extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextArea3KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextArea3KeyReleased(evt);
+            }
         });
         jScrollPane3.setViewportView(jTextArea3);
 
@@ -274,21 +296,39 @@ public class LanChat extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable1);
 
+        jButton3.setText("Suggest Features");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Report User");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrame1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
                     .addGroup(jFrame1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(jCheckBox1))
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane1))
+                        .addGap(56, 56, 56)
+                        .addComponent(jCheckBox1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jFrame1Layout.setVerticalGroup(
@@ -298,14 +338,25 @@ public class LanChat extends javax.swing.JFrame {
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jFrame1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jButton1))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jFrame1Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addContainerGap())
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +372,7 @@ public class LanChat extends javax.swing.JFrame {
         jTextArea2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Rule #1: No abusive language.\nRule #2: No pretending to be someone else/creating problems.\nThe author of this program shall not be held responsible on such events! :)\n\n\nBe KIND, HAVE FUN :)\n\n");
+        jTextArea2.setText("Rule #1: No abusive language.\nRule #2: No pretending to be someone else/creating problems.\nThe author of this program shall not be held responsible on such events! :)\n\n\nBe KIND, HAVE FUN :)");
         jTextArea2.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jTextArea2);
 
@@ -371,6 +422,40 @@ public class LanChat extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
+                .addContainerGap())
+        );
+
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jScrollPane5.setViewportView(jTextArea4);
+
+        jButton4.setText("Send");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
+        jFrame3.getContentPane().setLayout(jFrame3Layout);
+        jFrame3Layout.setHorizontalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5)
+                .addContainerGap())
+            .addGroup(jFrame3Layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jButton4)
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        jFrame3Layout.setVerticalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -449,7 +534,6 @@ public class LanChat extends javax.swing.JFrame {
 
     private void jTextArea3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea3KeyPressed
         // TODO add your handling code here:
-        //System.out.println(evt.getKeyCode() + " " + evt.getKeyChar());
         if (evt.getKeyCode() == 10) {
             if (jCheckBox1.isSelected()) {
                 send();
@@ -472,12 +556,53 @@ public class LanChat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jFrame3.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("insert into suggestions values(\"" + name + "\",\"" + jTextArea4.getText().trim() + "\",now());");
+            JOptionPane.showMessageDialog(jFrame3, "Thanks!");
+            jFrame3.dispose();
+        } catch (SQLException ex) {
+            showException("Error occured while sending feedback :(", ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextArea3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea3KeyReleased
+        // TODO add your handling code here:
+        if (jCheckBox1.isSelected() && evt.getKeyCode() == 10) {
+            jTextArea3.setText(null);
+        }
+    }//GEN-LAST:event_jTextArea3KeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        String reportReason = JOptionPane.showInputDialog(jFrame1, "Enter username and reason:");
+        reportReason = formatInput(reportReason);
+        try {
+            stmt.executeUpdate("insert into suggestions values(\"" + name + "\",\"Reporting :" + reportReason + "\",now());");
+        } catch (SQLException ex) {
+            showException("Error occured while reporting user", ex);
+        }
+        JOptionPane.showMessageDialog(jFrame1, "Every effort is taken to ensure that this chat is clean and friendly.\nBy reporting, you have helped to keep the community clean.\nIf you are disturbed, Seeking help from a teacher or adult is strongly suggested. Good day :)");
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    public String formatInput(String a) {
+        return a.trim().replace("\\", "\\\\").replace("\"", "\"\"");
+    }
+
     private void send() {
         try {
             stmt.executeUpdate("update online set status=0 where user=\"" + name + "\";");
         } catch (SQLException ex) {
         }
-        String message = jTextArea3.getText().trim();
+        String message = formatInput(jTextArea3.getText());
         if (nameOK) {
             if (message.startsWith("/")) {
                 try {
@@ -563,8 +688,8 @@ public class LanChat extends javax.swing.JFrame {
         });
     }
 
-    public void showException(String msg, Exception ex) {
-        JOptionPane.showMessageDialog(null, msg, "Oops. -" + name, JOptionPane.ERROR_MESSAGE);
+    public final void showException(String msg, Exception ex) {
+        JOptionPane.showMessageDialog(null, msg + "\n" + ex.getMessage(), "Oops. -" + name, JOptionPane.ERROR_MESSAGE);
 
         try {
             File f = new File("D:/ErrorLog.txt");
@@ -590,19 +715,25 @@ public class LanChat extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
+    private javax.swing.JFrame jFrame3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
