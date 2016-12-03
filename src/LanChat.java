@@ -83,6 +83,10 @@ public class LanChat extends javax.swing.JFrame {
             jFrame3.pack();
             jFrame3.setResizable(false);
             jFrame3.setLocationRelativeTo(null);
+            jFrame4.setTitle("About");
+            jFrame4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            jFrame4.pack();
+            jFrame4.setLocationRelativeTo(null);
             jFrame2.setVisible(true);
         } catch (IOException | SQLException ex) {
             showException("Error on loading dictionary", ex);
@@ -192,9 +196,7 @@ public class LanChat extends javax.swing.JFrame {
                         }
                         Thread.sleep(500);
                     }
-                } catch (SQLException ex) {
-
-                } catch (InterruptedException ex) {
+                } catch (SQLException | InterruptedException ex) {
 
                 }
             }
@@ -241,6 +243,9 @@ public class LanChat extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jButton4 = new javax.swing.JButton();
+        jFrame4 = new javax.swing.JFrame();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -322,6 +327,11 @@ public class LanChat extends javax.swing.JFrame {
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("About this program");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -462,6 +472,32 @@ public class LanChat extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTextArea5.setEditable(false);
+        jTextArea5.setColumns(20);
+        jTextArea5.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jTextArea5.setLineWrap(true);
+        jTextArea5.setRows(5);
+        jTextArea5.setText("About: Senior Lab Chatroom\nBy: Rangarajan\n\n-> A friendly chatroom for when you're too lazy to walk across the lab.\n\n-> Chat is clean and friendly. Try to swear. I dare you. I double dare you. (Please refrain)\n\n-> In any event of you being disturbed by this chat, please discontinue immediately and seek help from a teacher or an adult you trust. Don't fall victim to bullying.\n\n-> Nobody's forcing you to use this program, by using it you agree that ONLY you will be held responsible for any situation you may cause.\n\n-> You can contact the administrator any time by using the options in the menu bar. I will get back ASAP. (Read if I feel like it). (Or if I'm inside the lab just Heil Hitler and I'll come running)\n\n-> You can look at the active users on the right, and their present status. (Typing or nah)\n\n-> In the event of any user being problematic, please report them, or if an administrator is present, they can be kicked out. \n\n-> Have fun :)");
+        jTextArea5.setWrapStyleWord(true);
+        jScrollPane6.setViewportView(jTextArea5);
+
+        javax.swing.GroupLayout jFrame4Layout = new javax.swing.GroupLayout(jFrame4.getContentPane());
+        jFrame4.getContentPane().setLayout(jFrame4Layout);
+        jFrame4Layout.setHorizontalGroup(
+            jFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jFrame4Layout.setVerticalGroup(
+            jFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -593,6 +629,11 @@ public class LanChat extends javax.swing.JFrame {
         // TODO add your handling code here:
         send();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        jFrame4.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public String formatInput(String a) {
         return a.trim().replace("\\", "\\\\").replace("\"", "\"\"");
@@ -727,6 +768,7 @@ public class LanChat extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
+    private javax.swing.JFrame jFrame4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -738,11 +780,13 @@ public class LanChat extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

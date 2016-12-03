@@ -162,6 +162,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="About this program"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -321,6 +324,53 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
         </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JFrame" name="jFrame4">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane6" pref="460" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane6" pref="455" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea5">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="18" style="0"/>
+                </Property>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="About: Senior Lab Chatroom&#xa;By: Rangarajan&#xa;&#xa;-&gt; A friendly chatroom for when you&apos;re too lazy to walk across the lab.&#xa;&#xa;-&gt; Chat is clean and friendly. Try to swear. I dare you. I double dare you. (Please refrain)&#xa;&#xa;-&gt; In any event of you being disturbed by this chat, please discontinue immediately and seek help from a teacher or an adult you trust. Don&apos;t fall victim to bullying.&#xa;&#xa;-&gt; Nobody&apos;s forcing you to use this program, by using it you agree that ONLY you will be held responsible for any situation you may cause.&#xa;&#xa;-&gt; You can contact the administrator any time by using the options in the menu bar. I will get back ASAP. (Read if I feel like it). (Or if I&apos;m inside the lab just Heil Hitler and I&apos;ll come running)&#xa;&#xa;-&gt; You can look at the active users on the right, and their present status. (Typing or nah)&#xa;&#xa;-&gt; In the event of any user being problematic, please report them, or if an administrator is present, they can be kicked out. &#xa;&#xa;-&gt; Have fun :)"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </NonVisualComponents>
