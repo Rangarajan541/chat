@@ -30,8 +30,10 @@ public class LanChat extends javax.swing.JFrame {
     private ArrayList<String> words = new ArrayList<>();
     private Connection con;
     private Statement stmt;
-    private int curID = -1, curKillID = -1;
+    private int curID = -1, curKillID = -1, clickCount = 0;
     private static boolean reset = false, nameOK = false;
+    private boolean threadOn = false;
+    private Thread t5 = null;
 
     public LanChat() {
         FileReader fr = null;
@@ -227,6 +229,7 @@ public class LanChat extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -308,6 +311,13 @@ public class LanChat extends javax.swing.JFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(jTable1);
 
+        jButton3.setText("How many times can you click me in 10 secs?");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jMenu2.setText("Options");
 
         jMenuItem1.setText("Contact Admin/Suggest Features");
@@ -352,7 +362,9 @@ public class LanChat extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jFrame1Layout.setVerticalGroup(
@@ -368,7 +380,8 @@ public class LanChat extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -635,6 +648,45 @@ public class LanChat extends javax.swing.JFrame {
         jFrame4.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (!threadOn) {
+            clickCount = 0;
+            threadOn = true;
+            t5 = new Thread() {
+                int secs = 10;
+
+                @SuppressWarnings("deprecation")
+                @Override
+                public void run() {
+                    while (true) {
+                        secs--;
+                        if (secs == 1) {
+                            threadOn = false;
+                            finishComp();
+                            t5.stop();
+                        }
+                        try {
+                            t5.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(LanChat.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            };
+            t5.start();
+
+            clickCount++;
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+    public void finishComp() {
+        try {
+            stmt.executeUpdate("insert into messages values(" + getID() + 1 + ",\"" + name + "\",\"clicked the button " + clickCount + " times in 10 seconds.. How many times can you?\",now());");
+        } catch (SQLException ex) {
+            showException("Error occured on clicking", ex);
+        }
+    }
+
     public String formatInput(String a) {
         return a.trim().replace("\\", "\\\\").replace("\"", "\"\"");
     }
@@ -734,7 +786,7 @@ public class LanChat extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, msg + "\n" + ex.getMessage(), "Oops. -" + name, JOptionPane.ERROR_MESSAGE);
         FileWriter fw = null;
         try {
-            File f = new File("C:/ProgramData/chat/ErrorLog.txt");
+            File f = new File("D:/ErrorLog.txt");
             if (!f.exists()) {
                 f.createNewFile();
             }
@@ -762,6 +814,7 @@ public class LanChat extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
