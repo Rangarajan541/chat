@@ -685,7 +685,7 @@ public class LanChat extends javax.swing.JFrame {
                     while (true) {
                         secs--;
                         jButton3.setText(secs + " Seconds remaining");
-                        if (secs == 1) {
+                        if (secs == 0) {
                             jButton3.setText("How many times can you click me in 10 secs?");
                             finishComp();
                             t6.start();
