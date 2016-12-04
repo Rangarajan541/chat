@@ -54,7 +54,7 @@ CREATE TABLE `killid` (
 
 LOCK TABLES `killid` WRITE;
 /*!40000 ALTER TABLE `killid` DISABLE KEYS */;
-INSERT INTO `killid` VALUES (0),(1),(2);
+INSERT INTO `killid` VALUES (0),(1);
 /*!40000 ALTER TABLE `killid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +79,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (0,'System','hihihi has joined!','2016-11-30 14:27:18'),(1,'System','hihihi has left','2016-11-30 14:28:12'),(2,'System','keyboard has joined!','2016-11-30 14:28:22'),(3,'keyboard','asd','2016-11-30 14:28:27'),(4,'System','keyboard has left','2016-11-30 14:29:20'),(5,'System','keyboard has joined!','2016-11-30 14:29:27'),(6,'keyboard','asd','2016-11-30 14:29:30'),(7,'keyboard',':)','2016-11-30 14:29:42'),(8,'System','keyboard has left','2016-11-30 14:30:07'),(9,'System','keyboard has joined!','2016-11-30 14:30:13'),(10,'keyboard','asd','2016-11-30 14:30:19'),(11,'keyboard','I\'m such a bad person for trying to swear. Sorry!','2016-11-30 14:33:43'),(12,'System','Ranga has joined!','2016-11-30 14:34:07'),(13,'keyboard','/Ranga','2016-11-30 14:34:18'),(14,'Ranga','my turn','2016-11-30 14:34:23'),(15,'Ranga','/keyboard','2016-11-30 14:34:26'),(16,'System','keyboard has been kicked out by admin!','2016-11-30 14:34:28'),(17,'System','navie has joined!','2016-11-30 14:36:14'),(18,'navie','I\'m such a bad person for trying to swear. Sorry!','2016-11-30 14:36:17'),(19,'System','navie has left','2016-11-30 14:36:26'),(20,'System','Ranga has joined!','2016-11-30 14:38:51'),(21,'System','Naveed has joined!','2016-11-30 14:39:27'),(22,'Ranga','bye bye','2016-11-30 14:39:39'),(23,'Ranga','/Naveed','2016-11-30 14:39:44'),(24,'System','Naveed has been kicked out by admin!','2016-11-30 14:39:45'),(25,'System','Ranga has joined!','2016-11-30 14:41:21'),(26,'System','Douce has joined!','2016-11-30 14:41:33'),(27,'System','Douce has left','2016-11-30 14:41:37'),(28,'System','Bad Guy has joined!','2016-11-30 14:41:50'),(29,'Ranga','bye bye :)','2016-11-30 14:41:56'),(30,'Ranga',':*','2016-11-30 14:42:00'),(31,'Ranga','/Bad Guy','2016-11-30 14:42:04'),(32,'System','Bad Guy has been kicked out by admin!','2016-11-30 14:42:05'),(33,'System','Good guy has joined!','2016-11-30 14:42:31'),(34,'Ranga','Look on the right, he\'s typing :)','2016-11-30 14:42:50'),(35,'System','Ranga has left','2016-11-30 14:44:31'),(36,'Good guy','asd','2016-11-30 14:44:36'),(37,'System','Good guy has left','2016-11-30 14:44:39'),(38,'System','asdad has joined!','2016-11-30 14:44:54'),(39,'System','asdad has left','2016-11-30 14:56:13');
+INSERT INTO `messages` VALUES (0,'System','sdasdasdasd has joined!','2016-12-04 11:09:14'),(1,'System','sdasdasdasd clicked the button 48 times in 10 seconds. How many times can you?','2016-12-04 11:09:25'),(2,'System','sdasdasdasd has left [Closed]','2016-12-04 11:09:29'),(3,'System','sadasd has joined!','2016-12-04 11:11:04'),(4,'System','sadasd clicked the button 47 times in 10 seconds. How many times can you?','2016-12-04 11:11:13'),(5,'System','sadasd clicked the button 0 times in 10 seconds. How many times can you?','2016-12-04 11:11:23'),(6,'System','sadasd clicked the button 48 times in 10 seconds. How many times can you?','2016-12-04 11:12:22'),(7,'System','sadasd clicked the button 0 times in 10 seconds. How many times can you?','2016-12-04 11:12:32'),(8,'System','sadasd has left [Closed]','2016-12-04 11:18:11'),(9,'System','asdasdasd has joined!','2016-12-04 11:18:22'),(10,'asdasdasd','jghjghjghj','2016-12-04 11:18:25'),(11,'System','asdasdasd clicked the button 51 times in 10 seconds. How many times can you?','2016-12-04 11:18:35'),(12,'System','asdasdasd clicked the button 0 times in 10 seconds. How many times can you?','2016-12-04 11:18:44'),(13,'System','asdasdasd has left [Closed]','2016-12-04 11:19:20'),(14,'System','asdasdasd has joined!','2016-12-04 11:19:25'),(15,'asdasdasd','dsasdasd\'','2016-12-04 11:19:29'),(16,'System','asdasdasd clicked the button 50 times in 10 seconds. How many times can you?','2016-12-04 11:19:39'),(17,'asdasdasd','dasdas\nd\nasdsaa\ndsa\ndasd','2016-12-04 11:57:33'),(18,'System','asdasdasd has left [Closed]','2016-12-04 11:58:34'),(19,'System','dasdasd has joined!','2016-12-04 11:58:41'),(20,'dasdasd','Hello','2016-12-04 11:58:45'),(21,'dasdasd','what\'s up?','2016-12-04 11:58:48'),(22,'System','dasdasd clicked the button 57 times in 10 seconds. How many times can you?','2016-12-04 11:59:00'),(23,'dasdasd','I\'m such a bad person for trying to swear. Sorry!','2016-12-04 11:59:42'),(24,'System','dasdasd has left [Closed]','2016-12-04 11:59:46'),(25,'System','Keyboard has joined!','2016-12-04 13:08:09'),(26,'System','Keyboard clicked the button 50 times in 10 seconds. How many times can you?','2016-12-04 13:09:30'),(27,'System','ljlkjkjk has joined!','2016-12-04 13:11:19'),(28,'System','ljlkjkjk clicked the button 52 times in 10 seconds. How many times can you?','2016-12-04 13:11:30'),(29,'System','ljlkjkjk has left [Closed]','2016-12-04 13:11:53'),(30,'System','Keyboard has left [Program master shutdown]','2016-12-04 13:12:27');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,6 +104,30 @@ LOCK TABLES `online` WRITE;
 /*!40000 ALTER TABLE `online` DISABLE KEYS */;
 /*!40000 ALTER TABLE `online` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `suggestions`
+--
+
+DROP TABLE IF EXISTS `suggestions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `suggestions` (
+  `name` varchar(20) DEFAULT NULL,
+  `message` varchar(5000) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `suggestions`
+--
+
+LOCK TABLES `suggestions` WRITE;
+/*!40000 ALTER TABLE `suggestions` DISABLE KEYS */;
+INSERT INTO `suggestions` VALUES ('asdasd','Reporting :asdasdas dasdlkajdskj aksjdlkasjdlkasd','2016-12-03 13:56:36'),('dasdasdasd','asdasdasd','2016-12-03 13:57:56'),('dasdasdasd','Reporting :sdasdasdasdasd','2016-12-03 13:58:00'),('asdasdasd','','2016-12-03 14:27:52'),('dasdasdas','','2016-12-03 15:38:34');
+/*!40000 ALTER TABLE `suggestions` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -114,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-01  5:00:12
+-- Dump completed on 2016-12-04 18:45:04
