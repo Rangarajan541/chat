@@ -34,6 +34,7 @@ public class LanChat extends javax.swing.JFrame {
     private static boolean reset = false, nameOK = false;
     private boolean threadOn = false;
     private Thread t5 = null;
+    private int secs = 10, wait = 60;
 
     public LanChat() {
         FileReader fr = null;
@@ -114,7 +115,7 @@ public class LanChat extends javax.swing.JFrame {
                                 while (rs.next()) {
                                     String name = rs.getString("name");
                                     String message = rs.getString("message");
-                                    jTextArea1.append("\n" + name + ": " + message);
+                                    jTextArea1.append("\n" + name + ": " + message+"\n");
                                     curID = rs.getInt("id");
                                 }
 
@@ -650,41 +651,68 @@ public class LanChat extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+
+        Thread t6 = new Thread() {
+            @Override
+            public void run() {
+                wait = 60;
+                jButton3.setEnabled(false);
+                while (true) {
+                    if (wait == 1) {
+                        jButton3.setText("How many times can you click me in 10 secs?");
+                        jButton3.setEnabled(true);
+                        stop();
+                    }
+                    wait--;
+                    jButton3.setText("Wait for " + wait + " seconds.");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        showException("Error occured while re-setting clicks", ex);
+                    }
+
+                }
+            }
+        };
         if (!threadOn) {
             clickCount = 0;
+            secs = 10;
             threadOn = true;
             t5 = new Thread() {
-                int secs = 10;
-
                 @SuppressWarnings("deprecation")
                 @Override
                 public void run() {
                     while (true) {
                         secs--;
+                        jButton3.setText(secs + " Seconds remaining");
                         if (secs == 1) {
-                            threadOn = false;
+                            jButton3.setText("How many times can you click me in 10 secs?");
                             finishComp();
+                            t6.start();
                             t5.stop();
+                            threadOn = false;
                         }
                         try {
                             t5.sleep(1000);
                         } catch (InterruptedException ex) {
-                            Logger.getLogger(LanChat.class.getName()).log(Level.SEVERE, null, ex);
+                            showException("Interrupted while decreasing click seconds", ex);
                         }
                     }
                 }
             };
             t5.start();
-
-            clickCount++;
         }
+        clickCount++;
     }//GEN-LAST:event_jButton3ActionPerformed
     public void finishComp() {
         try {
-            stmt.executeUpdate("insert into messages values(" + getID() + 1 + ",\"" + name + "\",\"clicked the button " + clickCount + " times in 10 seconds.. How many times can you?\",now());");
+            stmt.executeUpdate("insert into messages values(" + Integer.toString(getID() + 1) + ",\"" + "System" + "\",\"" + name + " clicked the button " + clickCount + " times in 10 seconds. How many times can you?\",now());");
+
         } catch (SQLException ex) {
             showException("Error occured on clicking", ex);
         }
+        clickCount = 0;
+        secs = 10;
     }
 
     public String formatInput(String a) {
