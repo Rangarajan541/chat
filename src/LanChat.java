@@ -654,6 +654,7 @@ public class LanChat extends javax.swing.JFrame {
 
         Thread t6 = new Thread() {
             @Override
+            @SuppressWarnings("deprecation")
             public void run() {
                 wait = 60;
                 jButton3.setEnabled(false);
@@ -810,7 +811,7 @@ public class LanChat extends javax.swing.JFrame {
         });
     }
 
-    public final void showException(String msg, Exception ex) {
+    public void showException(String msg, Exception ex) {
         JOptionPane.showMessageDialog(null, msg + "\n" + ex.getMessage(), "Oops. -" + name, JOptionPane.ERROR_MESSAGE);
         FileWriter fw = null;
         try {
@@ -827,7 +828,7 @@ public class LanChat extends javax.swing.JFrame {
             }
             fw.write("End" + System.getProperty("line.separator"));
         } catch (IOException ex1) {
-            ex1.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error occured while creating Log");
         } finally {
             if (fw != null) {
                 try {
